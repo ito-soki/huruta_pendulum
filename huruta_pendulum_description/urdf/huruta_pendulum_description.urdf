@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="huruta_pendulum_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0.04 -2.7194E-18"
+        rpy="0 0 0" />
+      <mass
+        value="4.9312" />
+      <inertia
+        ixx="0.0057103"
+        ixy="-1.7942E-35"
+        ixz="0"
+        iyy="0.0061628"
+        iyz="0"
+        izz="0.0057103" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="base_motor">
+    <inertial>
+      <origin
+        xyz="5.2234E-11 -0.020959 0.0011139"
+        rpy="0 0 0" />
+      <mass
+        value="0.15498" />
+      <inertia
+        ixx="0.00012432"
+        ixy="2.3358E-13"
+        ixz="-3.749E-13"
+        iyy="0.00019371"
+        iyz="5.011E-06"
+        izz="0.00011832" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/base_motor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/base_motor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0.08"
+      rpy="-1.5708 0 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="base_motor" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="3"
+      velocity="30" />
+    <dynamics
+      damping="0.001"
+      friction="0.001" />
+  </joint>
+  <link
+    name="pendulum">
+    <inertial>
+      <origin
+        xyz="1.7396E-07 0.034235 -0.035881"
+        rpy="0 0 0" />
+      <mass
+        value="0.075639" />
+      <inertia
+        ixx="7.9049E-05"
+        ixy="1.4719E-10"
+        ixz="-1.6304E-10"
+        iyy="7.9494E-06"
+        iyz="1.0665E-05"
+        izz="7.1984E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/pendulum.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://huruta_pendulum_description/meshes/pendulum.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="free_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.05 0.02"
+      rpy="3.1416 0 0" />
+    <parent
+      link="base_motor" />
+    <child
+      link="pendulum" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="0"
+      velocity="100" />
+    <dynamics
+      damping="0.0001"
+      friction="0.0001" />
+  </joint>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+  <transmission name="motor_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="motor_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="free_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="free_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="free_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <gazebo>
+    <plugin filename="libgazebo_ros_joint_state_publisher.so" name="joint_state_publisher">
+      <jointName> 
+        motor_joint, free_joint
+      </jointName>
+      <updateRate>50.0</updateRate>
+    </plugin>
+  </gazebo>
+</robot>

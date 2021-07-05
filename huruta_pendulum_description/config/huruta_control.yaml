@@ -1,0 +1,4 @@
+# Motor Controller ---------------------------------------
+  Motor_Controller:
+    type: effort_controllers/JointEffortController
+    joint: motor_joint

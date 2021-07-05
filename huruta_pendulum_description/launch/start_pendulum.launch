@@ -1,0 +1,14 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <arg name="paused" value="true"/>
+  </include>  
+  <param name="robot_description" textfile="$(find huruta_pendulum_description)/urdf/huruta_pendulum_description.urdf"/>
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model huruta_pendulum_description -z 0.0"/>
+  <!-- <rosparam file="$(find huruta_pendulum_description)/config/huruta_control.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+    args="Motor_Controller"/> -->
+</launch>

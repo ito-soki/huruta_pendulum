@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>huruta_pendulum_controller</name>
+  <version>0.0.0</version>
+  <description>The huruta_pendulum_controller package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="s.itou5820@gmail.com "></maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+
+  <!-- Url tags are optional, but multiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://wiki.ros.org/hogehoge</url> -->
+
+
+  <!-- Author tags are optional, multiple are allowed, one per tag -->
+  <!-- Authors do not have to be maintainers, but could be -->
+  <!-- Example: -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>cmath</build_depend>
+  <build_depend>algorithm</build_depend>
+  <build_depend>Eigen</build_depend>
+  <build_depend>controller_interface</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>cmath</build_export_depend>
+  <build_export_depend>algorithm</build_export_depend>
+  <build_export_depend>Eigen</build_export_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>cmath</exec_depend>
+  <exec_depend>algorithm</exec_depend>
+  <exec_depend>Eigen</exec_depend>
+  <exec_depend>controller_interface</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>control_msgs</depend>
+  <depend>realtime_tools</depend>
+  <depend>pluginlib</depend>
+  
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <controller_interface plugin="${prefix}/pendulum_controller_plugins.xml"/>
+  </export>
+</package>

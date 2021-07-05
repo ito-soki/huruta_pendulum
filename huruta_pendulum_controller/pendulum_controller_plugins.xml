@@ -1,0 +1,8 @@
+<library path="lib/libpendulum_controller">
+  <class name="pendulum_controller/PendulumController" type="pendulum_controller::PendulumController" base_class_type="controller_interface::ControllerBase">
+    <description>
+      The Controller for huruta pendulum. 
+    </description>
+  </class>
+
+</library>

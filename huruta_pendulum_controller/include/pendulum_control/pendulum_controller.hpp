@@ -27,7 +27,7 @@ namespace pendulum_controller{
             bool command;
             bool command_CB;
 
-            float Kp[2], Kd[2];
+            float F[4];
             float torque;
     };
 
